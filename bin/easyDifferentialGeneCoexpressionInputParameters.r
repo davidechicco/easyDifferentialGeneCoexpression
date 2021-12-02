@@ -47,18 +47,34 @@ cat("firstConditionName: ", firstConditionName, "\n", sep="")
 cat("secondConditionName: ", secondConditionName, "\n", sep="")
 cat("- - - - - - - - - - - - - - - - - - - - - - - - - \n")
 
-# source("installPackages.r")
-# source("easyDifferentialGeneCoexpression.r")
+probesets_or_gene_symbols_original <- probesets_or_gene_symbols
+probesets_or_gene_symbols <- tolower(probesets_or_gene_symbols)
 
-list.of.packages <- c("easyDifferentialGeneCoexpression") # other packages
-new_packages_to_install <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new_packages_to_install)) install.packages(new_packages_to_install, repos="https://utstat.toronto.edu/cran/")
+accepted_keywords <- c("probeset", "probesets", "probe_set",  "probe_sets", "probe sets",  "probe set", "symbol", "symbols", "gene symbol", "gene_symbol", "gene symbols", "gene_symbols")
 
-library("easyDifferentialGeneCoexpression")
+if(!(probesets_or_gene_symbols %in% accepted_keywords)){
+
+    cat("Error: the input probeset / gene symbols argument is: ", probesets_or_gene_symbols, "\n", sep="")
+    cat("The input probeset / gene symbols argument should be one of the following terms (uppercase or lowercase): ", sep="")
+    cat(accepted_keywords, sep=", ")
+    cat("\nThe program will terminate here\n")
+    quit(save="no")
+
+}
+
+source("installPackages.r")
+source("easyDifferentialGeneCoexpression.r")
+
+# list.of.packages <- c("easyDifferentialGeneCoexpression") # other packages
+# new_packages_to_install <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+# if(length(new_packages_to_install)) install.packages(new_packages_to_install, repos="https://utstat.toronto.edu/cran/")
+# 
+# library("easyDifferentialGeneCoexpression")
 
 gset00 <- geoDataDownload(GSE_code)
 platformCode <- toString((gset00)[[1]]@annotation)
+verboseFlag <- TRUE
 
-list_of_probesets_to_select <-  probesetRetrieval(probesets_or_gene_symbols, csv_file_name, platformCode)
+list_of_probesets_to_select <-  probesetRetrieval(probesets_or_gene_symbols, csv_file_name, platformCode, verboseFlag)
 
-easyDifferentialGeneCoexpression(list_of_probesets_to_select, GSE_code, featureNameToDiscriminateConditions, firstConditionName, secondConditionName)
+easyDifferentialGeneCoexpressionResults <-  easyDifferentialGeneCoexpression(list_of_probesets_to_select, GSE_code, featureNameToDiscriminateConditions, firstConditionName, secondConditionName, verboseFlag)
