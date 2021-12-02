@@ -3,10 +3,7 @@ options(stringsAsFactors = FALSE)
 cat("\014")
 set.seed(11)
 
-source("installPackages.r")
 
-
-# main()
 
 args <- commandArgs(trailingOnly=TRUE)
 
@@ -28,7 +25,7 @@ secondConditionName <- ""
 
 # test if there is at least one argument: if not, return an error
 if (length(args) != 6) {
-  stop("At least 4 argument must be supplied\n", call.=FALSE)
+  stop("To run this package, 6 argument must be supplied\n", call.=FALSE)
 } else {
 
   probesets_or_gene_symbols <-  toString(args[1])
@@ -50,9 +47,16 @@ cat("firstConditionName: ", firstConditionName, "\n", sep="")
 cat("secondConditionName: ", secondConditionName, "\n", sep="")
 cat("- - - - - - - - - - - - - - - - - - - - - - - - - \n")
 
-source("easyDifferentialGeneCoexpression.r")
+# source("installPackages.r")
+# source("easyDifferentialGeneCoexpression.r")
 
-gset00 <- GEOquery::getGEO(GSE_code,  GSEMatrix =TRUE, getGPL=FALSE)
+list.of.packages <- c("easyDifferentialGeneCoexpression") # other packages
+new_packages_to_install <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new_packages_to_install)) install.packages(new_packages_to_install, repos="https://utstat.toronto.edu/cran/")
+
+library("easyDifferentialGeneCoexpression")
+
+gset00 <- geoDataDownload(GSE_code)
 platformCode <- toString((gset00)[[1]]@annotation)
 
 list_of_probesets_to_select <-  probesetRetrieval(probesets_or_gene_symbols, csv_file_name, platformCode)
