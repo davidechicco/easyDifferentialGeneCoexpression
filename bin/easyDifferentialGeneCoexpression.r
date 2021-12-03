@@ -14,12 +14,15 @@ geoPlatformAnnotationsDownload <- function(platformID, verbose=FALSE) {
             # check   URL
             checked_html_text_url <- "EMPTY_STRING"
             checked_html_text <- "https://www.ncbi.nlm.nih.gov/geo/"
-            checked_html_text_url <- lapply(checked_html_text, geneExpressionFromGEO::readUrl)
+            # checked_html_text_url <- lapply(checked_html_text, geneExpressionFromGEO::readUrl)
+            checked_html_text_url <- geneExpressionFromGEO::readUrl(checked_html_text)
             if(verbose == TRUE) cat("Checked URL ", checked_html_text, "\n", sep="")
             
             this_complete_url <- "EMPTY_STRING"
             this_complete_url_text <- paste0("https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=", platformID, "&view=data&form=text&targ=self")
-            this_complete_url <- lapply(this_complete_url_text, geneExpressionFromGEO::readUrl)
+            # this_complete_url <- lapply(this_complete_url_text, geneExpressionFromGEO::readUrl)
+            this_complete_url <- geneExpressionFromGEO::readUrl(this_complete_url_text)
+            
             if(verbose == TRUE) cat("Checked URL ", this_complete_url_text, "\n", sep="")
             
             if(all(checked_html_text_url == "EMPTY_STRING")) {
@@ -62,7 +65,8 @@ geoDataDownload <- function(GSE_code, verbose=FALSE){
             GSE_code_for_url <- paste0(GSE_code_for_url, "nnn")
             complete_url <- paste0("https://ftp.ncbi.nlm.nih.gov/geo/series/", GSE_code_for_url, "/", GSE_code)
            
-           checked_html_text_url <- lapply(complete_url, geneExpressionFromGEO::readUrl)
+           # checked_html_text_url <- lapply(complete_url, geneExpressionFromGEO::readUrl)
+           checked_html_text_url <- geneExpressionFromGEO::readUrl(complete_url)
             
             if(all(checked_html_text_temp == "EMPTY_STRING")) {
          
