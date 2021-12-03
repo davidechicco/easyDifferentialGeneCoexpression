@@ -41,11 +41,15 @@ The last parameter allows you to decide if you want the function to print messag
 ## An example ##
 
 We want to compute the differential coexpression of the probesets `200738_s_at, 217356_s_at, 206686_at, 226452_at, 223172_s_at, 223193_x_at, 224314_s_at, 230630_at`, and `202022_at` in the [GSE3268 gene expression dataset](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE3268). Here are the commands we can use in a `R` shell environment:
-    
+
     verboseFlag <- TRUE
-    probesetList <- c("200738_s_at", "217356_s_at", "206686_at", "226452_at", "223172_s_at",  "223193_x_at",  "224314_s_at", "230630_at", "202022_at")
-    geoCode <- "GSE3268"
-    easyDifferentialGeneCoexpression(probesetList,  geoCode, "description", "Normal", "Tumor", verboseFlag)
+    probesetList <- c("200738_s_at", "217356_s_at", "206686_at", "226452_at", "223172_s_at",
+                                        "223193_x_at",  "224314_s_at", "230630_at", "202022_at")
+    geoDatasetCode <- "GSE3268"
+    datasetFeatureName <- "description"
+    firstCondition <- "Normal"
+    secondCondition <- "Tumor"
+    easyDifferentialGeneCoexpression(probesetList,  geoDatasetCode, datasetFeatureNames, firstCondition, secondCondition, verboseFlag)
     
 ## Contacts ##
 
