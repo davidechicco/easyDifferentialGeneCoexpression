@@ -44,10 +44,10 @@ We want to compute the differential coexpression of the probesets `200738_s_at, 
 
     verboseFlag <- TRUE
     probesetList <- c("200738_s_at", "217356_s_at", "206686_at", "226452_at", "223172_s_at",
-                                        "223193_x_at",  "224314_s_at", "230630_at", "202022_at")
+        "223193_x_at",  "224314_s_at", "230630_at", "202022_at")
     geoCode <- "GSE16237"
     easyDifferentialGeneCoexpression(probesetList,  geoCode, "outcome of the patient:ch1", 
-                                                                          "Died of disease", "Alive", verboseFlag)
+        "Died of disease", "Alive", verboseFlag)
     
 ## Contacts ##
 
