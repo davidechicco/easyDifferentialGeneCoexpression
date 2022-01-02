@@ -11,6 +11,7 @@ authors:
     orcid: 0000-0003-0872-7098
     affiliation: 1
   - name: Abbas Alameer
+    orcid: 0000-0002-0699-163X
     affiliation: 2
 
 affiliations:
