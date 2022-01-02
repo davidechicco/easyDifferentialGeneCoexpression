@@ -118,8 +118,11 @@ The output of the call is the following result:
 ```
 
 In this example, we computed the differential gene coexpression of the genes related to the probesets saved in the `probesetList` variable in the [GSE16237 gene expression dataset](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE16237) [@ohtaki2010robust] available on Gene Expression Omnibus (GEO).
-That dataset contains prognostic gene expression samples of 51 patients diagnosed with neuroblastoma. 
+Other prognostic  gene expression datasets for this scope can be found through the recently released Perl package `geoCancerPrognosticDatasetsRetriever` [@alameer2021geocancerprognosticdatasetsretriever].
 
+`easyDifferentialGeneCoexpression` accepts probesets or gene symbols as input; in the latter case, it associates the input gene symbols to the corresponding microarray platform probesets through the `annotate` [@WWW-PACKAGE-ANNOTATE] and the `geneExpressionFromGEO` packages [@chicco2022geneexpressionfromgeo].
+
+The GSE16237 dataset contains prognostic gene expression samples of 51 patients diagnosed with neuroblastoma. 
 In this cohort, 39 patients died of this childhood cancer and 12 patients survived. This condition is encoded in the `"outcome of the patient:ch1"` variable of the dataset: the `"Died of disease"` label indicates the deceased patients and the `"Alive"` label indicates the survived individuals, of course.
 In the reported R code example, we specified all these pieces of information in the `datasetGEOcode`, `conditionFeatureName`, `firstConditionName`, and `secondConditionName` variables.
 
