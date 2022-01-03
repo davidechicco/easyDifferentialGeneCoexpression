@@ -13,7 +13,7 @@ args <- commandArgs(trailingOnly=TRUE)
 # firstConditionName <- "control"
 # secondConditionName <- "monocytopenia"
 
-# Rscript main.r GENE_SYMBOLS "gene_symbols_list02.csv" "GSE16020"  "characteristics_ch1" "control" "monocytopenia"
+# Rscript easyDifferentialGeneCoexpressionInputParameters.r GENE_SYMBOLS "../data/gene_symbols_list02.csv" "GSE16020"  "characteristics_ch1" "control" "monocytopenia"
 
 probesets_or_gene_symbols <- ""
 csv_file_name <- ""
@@ -63,13 +63,13 @@ if(!(probesets_or_gene_symbols %in% accepted_keywords)){
 }
 
 source("installPackages.r")
-source("easyDifferentialGeneCoexpression.r")
+# source("easyDifferentialGeneCoexpression.r")
  
-# list.of.packages <- c("easyDifferentialGeneCoexpression") # other packages
-# new_packages_to_install <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-# if(length(new_packages_to_install)) install.packages(new_packages_to_install, repos="https://utstat.toronto.edu/cran/")
-# 
-# library("easyDifferentialGeneCoexpression")
+list.of.packages <- c("easyDifferentialGeneCoexpression") # other packages
+new_packages_to_install <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new_packages_to_install)) install.packages(new_packages_to_install, repos="https://utstat.toronto.edu/cran/")
+
+library("easyDifferentialGeneCoexpression")
 
 gset00 <- geoDataDownload(GSE_code)
 platformCode <- toString((gset00)[[1]]@annotation)
