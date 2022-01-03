@@ -3,8 +3,6 @@ options(stringsAsFactors = FALSE)
 cat("\014")
 set.seed(11)
 
-
-
 args <- commandArgs(trailingOnly=TRUE)
 
 # csv_file_name <- "probeset_list01.csv"
