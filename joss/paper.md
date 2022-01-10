@@ -1,5 +1,5 @@
 ---
-title: '`easyDifferentialGeneCoexpression`, an easy bioinformatics tool to perform differential gene coexpression'
+title: '`easyDifferentialGeneCoexpression`, a handy bioinformatics tool to easily perform differential gene coexpression'
 tags:
   - R
   - bioinformatics
