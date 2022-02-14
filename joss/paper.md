@@ -19,7 +19,7 @@ affiliations:
    index: 1
  - name: Kuwait University
    index: 2
-date: 2 January 2022
+date: 13 February 2022
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
@@ -35,17 +35,18 @@ Differential gene coexpression is a technique that indicates the pairs of genes 
 
 If two genes have very different gene expression trends in data samples of patients with breast cancer and in data samples of healthy controls, it is possible that both those genes (or at least one of them) might have a significant role in breast cancer development and/or prognosis [@gov2017differential; @choi2005differential].
 
-In this short paper, we present `easyDifferentialGeneExpression`, an R package which handily computes the differential gene expression between genes in a specific dataset, and returns the list of significant differential pair of genes, if found.
-Our software is available as a [R library](https://metacpan.org/pod/App::easyDifferentialGeneCoexpression), as a [Perl module](https://metacpan.org/pod/App::easyDifferentialGeneCoexpression) that can be used in any standard terminal shell, and as a [repository on GitHub](https://github.com/davidechicco/easyDifferentialGeneCoexpression).
+In this short paper, we present `easyDifferentialGeneExpression`, an R package which handily computes the differential gene expression between genes in a specific dataset, and returns the list of significant differential pairs of genes, if found.
+Our software is available as a [R library](https://metacpan.org/pod/App::easyDifferentialGeneCoexpression), as a [Perl application](https://metacpan.org/pod/App::easyDifferentialGeneCoexpressionWrapper) that can be used in any standard terminal shell, and as a [repository on GitHub](https://github.com/davidechicco/easyDifferentialGeneCoexpression).
 
 # Statement of need
 
-Several R package for differential gene expression already exist (`diffcoexp` [@WWW-diffcoexp; @yang2013dcgl], `decode` [@lui2015decode] and `dcanr` [@bhuva2019differential]) on Bioconductor [@Huber2015], but they all have limitations. 
+Several R packages for differential gene expression already exist: `diffcoexp` [@WWW-diffcoexp; @yang2013dcgl], `decode` [@lui2015decode] and `dcanr` [@bhuva2019differential]) on Bioconductor [@Huber2015]. 
+However, they all have limitations, that can make differential gene coexpression analyses difficult, especially for beginners.
 First, they provide results measured with multiple coefficients, which can be an asset for experienced researchers, but can also be confusing for beginners and unexperienced users.
 
 The `diffcoexp()` function of the `diffcoexp` [@WWW-diffcoexp] library, for example, returns the pairs of differentially coexpressed genes ranked by difference between correlation coefficients under the second condition and the first condition (`cor.diff`), *p*-value under null hypothesis that difference between two correlation coefficients under two conditions equals to zero using Fisher’s r-to-Z transformation (`p.diffcor`), and adjusted *p*-value under null hypothesis that difference between two correlation coefficients under two conditions equals to zero using Fisher’s r-to-Z transformation (`q.diffcor`).
 These three coefficients have different meanings and can generate three different rankings.
- Instead, our `easyDifferentialGeneExpression` package, that we built right on `diffcoexp`, generates a final ranking of pairs of significantly expressed genes only through the *p*-value difference ranking, which we believe being the most informative coefficent and ranking.
+ Instead, our `easyDifferentialGeneExpression` package, that we built right on `diffcoexp`, generates a final ranking of pairs of significantly expressed genes only through the *p*-value difference ranking, which we believe it is the most informative coefficent and ranking.
  
  Additionally, our `easyDifferentialGeneExpression` package returns a list of significantly coexpressed gene pairs only if their *p*-values are stricly lower than the 0.005 significance threshold, as suggested by @benjamin2018redefine.
  To avoid *p*-hacking [@head2015extent], the users cannot choose their  prefered significance threshold. 
@@ -69,7 +70,7 @@ To install `easyDifferentialGeneExpression` from GitHub:
 To install `easyDifferentialGeneExpression` from CPAN, on a Linux operating system:
 
 ```
-    cpanm App::easyDifferentialGeneExpression
+    cpanm App::easyDifferentialGeneExpressionWrapper
 ```
 
 Please notice that in a Linux Ubuntu system the user might have to run the last command in the `sudo` mode.
