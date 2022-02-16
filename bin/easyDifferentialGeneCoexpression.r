@@ -244,15 +244,21 @@ easyDifferentialGeneCoexpression <- function(list_of_probesets_to_select, GSE_co
         # patients_gene_expression <- gset_expression[, grepl("monocytopenia", gset$"characteristics_ch1", fixed=TRUE)] 
 
         if(verbose == TRUE)  {
-            cat("firstConditionName: ")
-            cat(firstConditionName, "\n")
-            cat("secondConditionName: ")
-            cat(secondConditionName, "\n") 
+            cat("firstConditionName: ", firstConditionName, "\t")
+            cat("secondConditionName: ", secondConditionName, "\n") 
+        }
+        
+        gset_expression_colmeans_mean <- gset_expression %>%  colMeans() %>% mean()
+        gset_expression_colmeans_sd <-gset_expression %>%  colMeans() %>% sd()
+        cat()
+        
+        if(verbose == TRUE)  {
+          cat("mean of the average gene expression per patient profile ± standard deviation = ", gset_expression_colmeans_mean, " ± ", gset_expression_colmeans_sd,"\n", sep="")
         }
         
         if(batchCorrection == TRUE) {
         
-            cat("batch correction\n ")        
+            if(verbose == TRUE) cat("batch correction:\n")        
             firstConditionColumns <- gset_expression[, grepl(firstConditionName, gsetPhenoDataDF[, featureNameToDiscriminateConditions]
             , fixed=TRUE)]  %>% colnames()
             secondConditionColumns <- gset_expression[, grepl(secondConditionName, gsetPhenoDataDF[, featureNameToDiscriminateConditions]
@@ -265,12 +271,21 @@ easyDifferentialGeneCoexpression <- function(list_of_probesets_to_select, GSE_co
                 else batch[i] <- secondConditionName
             }
             
-            cat("batches:\t")
-            cat(firstConditionName, " and ", secondConditionName, "\n", sep="")
+            cat("batches: ", firstConditionName, " and ", secondConditionName, "\n", sep="")
             
             output_batch_correction <- limma::removeBatchEffect(gset_expression, batch)
+            
+            output_batch_correction_mean <- output_batch_correction %>%  colMeans() %>% mean()
+            output_batch_correction_sd <-output_batch_correction %>%  colMeans() %>% sd()
+            cat()
+            
+            if(verbose == TRUE)  {
+              cat("mean of the average gene expression per patient profile after batch correction ± standard deviation = ", output_batch_correction_mean, " ± ", output_batch_correction_sd,"\n", sep="")
+            }
+            
+            
+            
             gene_expression <- output_batch_correction
-        
         }
         
         

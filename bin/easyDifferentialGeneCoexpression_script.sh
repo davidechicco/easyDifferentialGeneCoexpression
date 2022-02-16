@@ -44,7 +44,7 @@ Rscript easyDifferentialGeneCoexpressionInputParameters.r "$probesets_or_gene_sy
 
 echo "easyDifferentialGeneCoexpression -- The end"
 
-# 
+#                                                                                                                                                                                                                                                                                                   
 # # Rscript easyDifferentialGeneCoexpressionInputParameters.r "PROBESETS" "../data/dc_probeset_list03.csv" "GSE30201" "source_name_ch1" "Patient" "Normal"
 # 
 # Rscript easyDifferentialGeneCoexpressionInputParameters.r $studyFlag > $outputFile 2> $outputFile
