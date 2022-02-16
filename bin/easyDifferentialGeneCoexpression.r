@@ -253,7 +253,7 @@ easyDifferentialGeneCoexpression <- function(list_of_probesets_to_select, GSE_co
         cat()
         
         if(verbose == TRUE)  {
-          cat("mean of the average gene expression per patient profile ± standard deviation = ", gset_expression_colmeans_mean, " ± ", gset_expression_colmeans_sd,"\n", sep="")
+          cat("mean of the average gene expression per patient profile +- standard deviation = ", gset_expression_colmeans_mean, " +- ", gset_expression_colmeans_sd,"\n", sep="")
         }
         
         if(batchCorrection == TRUE) {
@@ -280,7 +280,7 @@ easyDifferentialGeneCoexpression <- function(list_of_probesets_to_select, GSE_co
             cat()
             
             if(verbose == TRUE)  {
-              cat("mean of the average gene expression per patient profile after batch correction ± standard deviation = ", output_batch_correction_mean, " ± ", output_batch_correction_sd,"\n", sep="")
+              cat("mean of the average gene expression per patient profile after batch correction +- standard deviation = ", output_batch_correction_mean, " +- ", output_batch_correction_sd,"\n", sep="")
             }
             
             
