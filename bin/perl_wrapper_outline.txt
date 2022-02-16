@@ -1,0 +1,36 @@
+
+# Example of call
+easyDifferentialGeneCoexpression 
+-a "GENE_SYMBOLS" 
+-f "../data/gene_symbols_list02.csv" 
+-d "GSE16020" 
+-v "characteristics_ch1"
+-v1 "control"
+-v2 "monocytopenia"
+-o "temp"
+
+# Pseudocode (similar to bash) for the Perl module
+
+probesets_or_gene_symbols=$1;
+CSV_file=$2;
+geoDatasetCode=$3;
+featureName=$4;
+firstCondition=$5;
+secondCondition=$6;
+outputFolder=$7;
+
+today=`date +%Y-%m-%d`
+random_number=$(shuf -i1-100000 -n1)
+outputFile=""
+
+print all the input parameters' values
+
+outputResultsFile=$outputFolder/"results_"$today"_"$random_number;
+outputLogFile=$outputFolder/"log_"$today"_"$random_number;
+
+if (easyDifferentialGeneCoexpressionInputParameters.r file is absent) {
+    CURL download https://github.com/davidechicco/easyDifferentialGeneCoexpression/blob/main/bin/easyDifferentialGeneCoexpressionInputParameters.r
+}
+
+Rscript easyDifferentialGeneCoexpressionInputParameters.r "$probesets_or_gene_symbols" "$CSV_file" "$geoDatasetCode" "$featureName" "$firstCondition" "$secondCondition" > $outputResultsFile 2> $outputLogFile;
+

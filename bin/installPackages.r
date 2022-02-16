@@ -16,7 +16,7 @@ if(length(new_packages_to_install)) install.packages(new_packages_to_install, re
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager", repos="https://utstat.toronto.edu/cran/")
 #    "annotate"
-listOfBiocPackages <- c("Biobase", "org.Hs.eg.db",  "GEOquery", "diffcoexp", "annotate", "sva")
+listOfBiocPackages <- c("Biobase", "org.Hs.eg.db",  "GEOquery", "diffcoexp", "annotate", "sva", "limma")
 
 bioCpackagesNotInstalled <- which( !listOfBiocPackages %in% rownames(installed.packages()) )
 if(length(bioCpackagesNotInstalled)) cat("package missing listOfBiocPackages[", bioCpackagesNotInstalled, "]: ", listOfBiocPackages[bioCpackagesNotInstalled], "\n", sep="")

@@ -8,7 +8,7 @@ tags:
   - gene expression
 authors:
   - name: Davide Chicco
-    orcid: 0000-0003-0872-7098
+    orcid: 0000-0001-9655-7142
     affiliation: 1
   - name: Abbas Alameer
     orcid: 0000-0002-0699-163X
@@ -93,10 +93,11 @@ To use `easyDifferentialGeneExpression` in an R environment:
     conditionFeatureName <- "outcome of the patient:ch1"
     firstConditionName <-  "Died of disease"
     secondConditionName <- "Alive"
+    batchCorrectionFlag <-  TRUE
     
     ## Function call
     easyDifferentialGeneCoexpression(probesetList, datasetGEOcode, conditionFeatureName, 
-    firstConditionName, secondConditionName, verboseFlag)
+    firstConditionName, secondConditionName, batchCorrectionFlag, verboseFlag)
 ```
 
 The output of the call is the following result:
@@ -127,7 +128,7 @@ The GSE16237 dataset contains prognostic gene expression samples of 51 patients 
 In this cohort, 39 patients died of this childhood cancer and 12 patients survived. This condition is encoded in the `"outcome of the patient:ch1"` variable of the dataset: the `"Died of disease"` label indicates the deceased patients and the `"Alive"` label indicates the survived individuals, of course.
 In the reported R code example, we specified all these pieces of information in the `datasetGEOcode`, `conditionFeatureName`, `firstConditionName`, and `secondConditionName` variables.
 
-Our package computes the differential gene coexpression through the `easyDifferentialGeneCoexpression()` function, that eventually generates a list of significantly coexpressed pairs of genes, whose *p*-value is lower than 0.005, as suggested by @benjamin2018redefine.
+Our package main function first performs a batch correction [@chen2011removing] and then computes the differential gene coexpression through the `easyDifferentialGeneCoexpression()` function. This function eventually generates a list of significantly coexpressed pairs of genes, whose *p*-value is lower than 0.005, as suggested by @benjamin2018redefine.
 To avoid *p*-hacking [@head2015extent], this threshold cannot be changed by the user.
 
 In the results, the PDK1-MTFP1, PDK1-FAM162A, and FAM162A-MTFP1 gene pairs result being the most significantly coexpressed gene pairs, suggesting an active role of these three genes (FAM162A, MTFP1, and PDK1) in neuroblastoma. Researchers can use this information to carry on new experiments and scientific analyses investigating the role of these three genes in neuroblastoma.

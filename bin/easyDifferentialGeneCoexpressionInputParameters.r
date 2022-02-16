@@ -61,18 +61,19 @@ if(!(probesets_or_gene_symbols %in% accepted_keywords)){
 }
 
 source("installPackages.r")
-# source("easyDifferentialGeneCoexpression.r")
+source("easyDifferentialGeneCoexpression.r")
  
 list.of.packages <- c("easyDifferentialGeneCoexpression") # other packages
 new_packages_to_install <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new_packages_to_install)) install.packages(new_packages_to_install, repos="https://utstat.toronto.edu/cran/")
 
-library("easyDifferentialGeneCoexpression")
+# library("easyDifferentialGeneCoexpression")
 
 gset00 <- geoDataDownload(GSE_code)
 platformCode <- toString((gset00)[[1]]@annotation)
 verboseFlag <- TRUE
 
 list_of_probesets_to_select <-  probesetRetrieval(probesets_or_gene_symbols, csv_file_name, platformCode, verboseFlag)
+batchCorrectionFlag <- TRUE
 
-easyDifferentialGeneCoexpressionResults <-  easyDifferentialGeneCoexpression(list_of_probesets_to_select, GSE_code, featureNameToDiscriminateConditions, firstConditionName, secondConditionName, verboseFlag)
+easyDifferentialGeneCoexpressionResults <-  easyDifferentialGeneCoexpression(list_of_probesets_to_select, GSE_code, featureNameToDiscriminateConditions, firstConditionName, secondConditionName, batchCorrectionFlag,  verboseFlag)
